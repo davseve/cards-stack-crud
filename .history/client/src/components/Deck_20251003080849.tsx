@@ -1,7 +1,7 @@
 function Deck() {
   const handleCArdAddition = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log((e.target as HTMLFormElement).card.value);
+    console.log(e.target.value);
   }
 
   return (
