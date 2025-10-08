@@ -40,6 +40,7 @@ function App() {
     <div className='app'>
      <ThemeProvider theme={theme}>
       <CssBaseline />
+      <h1 className="app-title">📚 Deck Dashboard</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="deckTitle">Deck Title</label>
         <input 

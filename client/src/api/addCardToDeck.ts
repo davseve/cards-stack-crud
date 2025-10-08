@@ -1,7 +1,6 @@
 import { API_URL } from "./config";
 
 export async function addCardToDeck( id: string, text: string ) {
-    console.log({'addCardToDeck': id, text});
     try {
         const response = await fetch(`${ API_URL }/decks/${id}/cards`, {
             method: "POST",

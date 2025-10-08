@@ -1,8 +1,347 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-html, body, #root, .app {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
   height: 100%;
   width: 100%;
   font-family: "Inter", sans-serif;
-  background-color: #fff;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+}
+
+.app-title {
+  text-align: center;
+  color: white;
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 3rem;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  letter-spacing: -0.02em;
+}
+
+/* Form Styling */
+form {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: "Inter", sans-serif;
+  transition: all 0.2s ease;
+  background: #fff;
+  margin-bottom: 1.5rem;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #12efc8;
+  box-shadow: 0 0 0 3px rgba(18, 239, 200, 0.1);
+  transform: translateY(-1px);
+}
+
+input[type="text"]::placeholder {
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+button {
+  background: linear-gradient(135deg, #12efc8 0%, #0ebfa0 100%);
+  color: white;
+  border: none;
+  padding: 0.875rem 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 15px rgba(18, 239, 200, 0.3);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(18, 239, 200, 0.4);
+  background: linear-gradient(135deg, #0ebfa0 0%, #12efc8 100%);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Deck Container */
+.decks {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.decks ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 0;
+}
+
+.decks li {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.decks li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #12efc8, #f2b455);
+}
+
+.decks li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.decks li button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  padding: 0;
+  background: #ef4444;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.decks li button:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+.decks li a {
+  display: block;
+  color: #1f2937;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.125rem;
+  padding-right: 3rem;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+
+.decks li a:hover {
+  color: #12efc8;
+}
+
+/* Deck Page Styling */
+.deck-page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.back-link {
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 2rem;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.back-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  transform: translateX(-5px);
+}
+
+.deck-page h1 {
+  text-align: center;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Form Styling */
+.card-form {
+  margin-bottom: 3rem;
+}
+
+/* Cards List */
+.cards-list {
+  list-style: none;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.cards-list li {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.2s ease;
+}
+
+.cards-list li:hover {
+  transform: translateX(5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.cards-list li button {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  padding: 0;
+  background: #ef4444;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3);
+  flex-shrink: 0;
+}
+
+.cards-list li button:hover {
+  background: #dc2626;
+  transform: scale(1.1);
+}
+
+.cards-list li span {
+  flex-grow: 1;
+  color: #374151;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+/* No cards message */
+.deck-page p {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.125rem;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 400px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app {
+    padding: 1rem;
+  }
+  
+  .app-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  form {
+    padding: 1.5rem;
+  }
+  
+  .decks ul {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .deck-page h1 {
+    font-size: 2rem;
+  }
+  
+  input[type="text"], button {
+    font-size: 0.875rem;
+  }
+}
+
+/* Loading and Animation Effects */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.decks li, .cards-list li {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.decks li:nth-child(2) { animation-delay: 0.1s; }
+.decks li:nth-child(3) { animation-delay: 0.2s; }
+.decks li:nth-child(4) { animation-delay: 0.3s; }
+
+/* Scroll behavior */
+html {
+  scroll-behavior: smooth;
 }

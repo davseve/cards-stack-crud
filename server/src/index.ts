@@ -30,9 +30,7 @@ app.get("/decks/:id/cards", getCardsForDeckController);
 app.delete("/decks/:id/cards/:text", deleteCardFromDeckController);
 
 mongoose.connect(process.env.MONGO_URL!).then(() => {
-  console.log("Connected to MongoDB");
   app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
   });
 });
 
