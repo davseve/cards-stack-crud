@@ -56,10 +56,10 @@ function App() {
       </form>
       <div className="decks">
         <ul>
-        {decks.map((deck: Deck) => (
+        {decks.map((deck: TDeck) => (
           <li key={deck._id}>
           <button onClick={() => handleDelete(deck._id)}>x</button>
-          <Link to={`/decks/${deck._id}`}>{deck.title}</Link>
+          <Link to={`/decks/${deck._id}/cards`}>{deck.title}</Link>
           </li>
         ))}
         </ul>
