@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { addCardToDeck } from "../api/addCardToDeck";
 import { getCardsForDeck } from "../api/getCardsForDeck";
+import { deleteCardFromDeck } from "../api/deleteCardFromDeck";
 import { useState, useEffect } from "react";
 
 function Deck() {
@@ -9,10 +10,23 @@ function Deck() {
 
   async function handleCArdAddition(e: React.FormEvent<HTMLFormElement>){
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    
-    const addNewCardToDeck = await addCardToDeck( id as string, formData.get('card') as string);
-    console.log('addNewCardToDeck response', addNewCardToDeck);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const text = formData.get('card') as string;
+    await addCardToDeck( id as string, text);
+    // optimistic approach to display new added cards without reloading the page
+    setCards([...cards, text]);
+    form.reset();
+  }
+
+  async function handleCardDeletion(text: string){
+    try {
+      console.log('deleting card:', text);
+    await deleteCardFromDeck(id as string, text);
+    } catch (error) {
+      console.error('Error deleting card:', error);
+    }
+    setCards(cards.filter((card) => card !== text));
   }
 
   async function loadCards(){
@@ -45,7 +59,14 @@ function Deck() {
         cards.length > 0 ? (
           <ul>
             {cards.map((card, index) => (
-              <li key={index}>{card}</li>
+              <li key={index}>
+                <button
+                  onClick={() => handleCardDeletion(card)}
+                >
+                  x 
+                </button> - 
+                <span>{card}</span> 
+              </li>
             ))}
           </ul>
         ) : (

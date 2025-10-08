@@ -22,8 +22,7 @@ function App() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(title);
-   
+
     const deck = await createDecks(title);
 
     setDecks([...decks, deck]);
